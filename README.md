@@ -1,4 +1,11 @@
 # Getting Started
+```bash
+$ ./gradlew bootrun
+```
+
+```bash
+$ ./gradlew build
+```
 
 ### Reference Documentation
 For further reference, please consider the following sections:
