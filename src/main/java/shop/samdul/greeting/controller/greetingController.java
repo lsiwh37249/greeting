@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class greetingController {
-    Stack<People> peoples = new Stack<>();
-    int i = 0;
-    int num = 0;
+    Stack<People> Peoples = new Stack<>();
 
     @GetMapping("/greeting")
     public String greeting(
@@ -22,17 +20,21 @@ public class greetingController {
                     name = "name",
                     required = false,
                     defaultValue="HI") String name, Model model){
-                i = i + 1;
-                num = i;
-                System.out.println("======================");
+                
+                People p = new People();
+                if (Peoples.isEmpty()){
+                    p.num = 0;
+                }
+                else{
+                    People p1 = Peoples.peek();
+                    p.setNum(p1.getNum() + 1);
+                }
+
                 name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-                System.out.println(name);
+                p.setName(name);
+                Peoples.push(p);
                 
-                People people = new People(num, name);
-                peoples.push(people);
-                System.out.println("======================");
-                
-                model.addAttribute("peoples",peoples);
+                model.addAttribute("peoples",Peoples);
                 return "greeting";
  }
 }

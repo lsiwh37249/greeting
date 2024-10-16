@@ -3,13 +3,30 @@
 <head> 
     <title>Getting Started: Serving Web Content</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        table {
+            width: 30%;
+            border: 1px solid #444444;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid #444444;
+        }
+    </style>
 </head>
 <body>
     <ul>
         <!-- people.num과 people.name을 같이 출력할 수 있도록 수정 -->
         <li th:each="people : ${peoples}" 
-            th:text="'ID: ' + ${people.num} + ' - Name: ' + ${people.name}">
+        th:text="'num: ' + ${people.num} + ' - Name: ' + ${#strings.capitalize(people.name)}">
         </li>
     </ul>
+
+    <table>
+    <tr th:each="person : ${peoples}">
+        <td th:text="${person.num}"></td>
+        <td th:text="${#strings.capitalize(person.name)}"></td>
+    </tr>
+    </table>
 </body>
 </html>
