@@ -3,6 +3,7 @@ package shop.samdul.greeting.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import shop.samdul.greeting.controller.People;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class greetingController {
-
-    Stack<String> names = new Stack<String>();
+    Stack<People> peoples = new Stack<>();
+    int i = 0;
+    int num = 0;
 
     @GetMapping("/greeting")
     public String greeting(
@@ -20,9 +22,17 @@ public class greetingController {
                     name = "name",
                     required = false,
                     defaultValue="HI") String name, Model model){
-                names.push(name);
+                i = i + 1;
+                num = i;
+                System.out.println("======================");
+                name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+                System.out.println(name);
                 
-                model.addAttribute("names",names);
+                People people = new People(num, name);
+                peoples.push(people);
+                System.out.println("======================");
+                
+                model.addAttribute("peoples",peoples);
                 return "greeting";
  }
 }

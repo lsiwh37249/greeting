@@ -6,7 +6,10 @@
 </head>
 <body>
     <ul>
-        <li th:each="name : ${names}" th:text="${name}"></li>
+        <!-- people.num과 people.name을 같이 출력할 수 있도록 수정 -->
+        <li th:each="people : ${peoples}" 
+            th:text="'ID: ' + ${people.num} + ' - Name: ' + ${people.name}">
+        </li>
     </ul>
 </body>
 </html>
