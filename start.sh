@@ -5,4 +5,4 @@ nohup java \
         -jar build/libs/greeting-0.0.1-SNAPSHOT.jar &
 
 echo "> Application started with PID $!"
-sleep 10
+sleep 100000
